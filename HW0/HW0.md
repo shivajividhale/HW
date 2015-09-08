@@ -55,3 +55,5 @@ git reset HEAD~1
 git checkout pushed
 git revert HEAD
 ```
+
+![image](https://github.com/shivajividhale/HW/blob/master/HW0/Git_summup.PNG)
