@@ -1,5 +1,6 @@
 #HW0
 
+## Introduction to Sequence
 ### Level 1:
 ```
 git commit -m “c2”
@@ -29,7 +30,7 @@ git checkout bugFix
 git rebase master
 ```
 
-##Moving around in Git:
+## Ramping Up
 ### Level rampup1:
 ```
 git checkout bugFix
@@ -56,4 +57,5 @@ git checkout pushed
 git revert HEAD
 ```
 
+### Progress
 ![image](https://github.com/shivajividhale/HW/blob/master/HW0/Git_summup.PNG)
