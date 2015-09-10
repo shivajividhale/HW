@@ -59,3 +59,6 @@ git revert HEAD
 
 ### Progress
 ![image](https://github.com/shivajividhale/HW/blob/master/HW0/Git_summup.PNG)
+
+###Git hook gif:
+![image](https://github.com/shivajividhale/HW/blob/master/HW0/savidhal_HW0.gif)
