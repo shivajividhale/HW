@@ -1,0 +1,18 @@
+
+{
+  "name": "DevOPsHW1AWS",
+  "version": "0.0.0",
+  "description": "\"Provision vms\"",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "needle": "^0.7.10",
+    "express": "*",
+    "aws-sdk": "*"
+  },
+"engine": "node >=0.6.x"
+}

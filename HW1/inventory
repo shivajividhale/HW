@@ -1,0 +1,2 @@
+[servers]
+node0 ansible_ssh_host=52.8.157.51 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=/home/shivajividhale/Downloads/HW1.pem
