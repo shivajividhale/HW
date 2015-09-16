@@ -1,6 +1,9 @@
 var AWS = require('aws-sdk');
 fs = require('fs');
 os = require('os');
+var sys = require('sys')
+var exec = require('child_process').exec;
+
 
 // configure AWS security tokens
 AWS.config.update({accessKeyId: process.env.AccessKeyID,
@@ -12,46 +15,53 @@ AWS.config.update({region: 'us-west-1'});
 var ec2 = new AWS.EC2({apiVersion: '2015-04-15'});
 
 
-var paramsa = {
+var params = {
   ImageId: 'ami-d383af96', // Amazon Linux AMI x86_64 EBS
-  InstanceType: 't1.micro',
+  InstanceType: 'm1.small',
   KeyName: 'HW1',
   MinCount: 1, MaxCount: 1
 };
 
 // Create the instance
-/*ec2.runInstances(params, function(err, data) {
-  if (err) { console.log("Could not create instance", err); return; }
+ec2.runInstances(params, function(err, data) {
+	if (err) { console.log("Could not create instance", err); return; }
+	var instanceId = data.Instances[0].InstanceId;
+    console.log("Created instance", instanceId);
+    setTimeout();
+	var params = {
+  		InstanceIds: [instanceId]
+  	};
 
-//  var instanceId = data.Instances[0].InstanceId;
+ 	ec2.waitFor('instanceRunning', params, function(err, waitForData) {
+ 		ec2.describeInstances(params, function(err,data){
+  		if (err) {
+  		console.log("Could not create instance", err); return;
+  		}
+  		console.log("here");
+  		//console.log(params.InstanceIds);
+	  	var ip = data.Reservations[0].Instances[0].PublicIpAddress;
+	  	console.log(ip);
+	  	var file_data = '[servers]\nnode-aws ansible_ssh_host='+ip+' ansible_ssh_user=ubuntu'+
+	  	' ansible_ssh_private_key_file='+process.env.HOME+'/Downloads/HW1.pem';
 
-});*/
-  var instanceId = 'i-588247ea';
-  var params = {
-  	InstanceIds: [instanceId]
-  }
-  console.log("Created instance", instanceId);
-  ec2.describeInstances(params, function(err,data){
-  	if (err) { console.log("Could not create instance", err); return; }
-  	//var instanceId = data.Instance[0].InstanceId;
-  	//var ip =  data.Instances[0].PublicIpAddress;
-  	//console.log(instanceId);
-  //	[servers]
-/*node0 ansible_ssh_host=198.199.XX.XX ansible_ssh_user=root ansible_ssh_private_key_file=./id_rsa
-*/  	console.log();
-  	var ip = data.Reservations[0].Instances[0].PublicIpAddress;
-  	var file_data = '[servers]\nnode0 ansible_ssh_host='+ip+' ansible_ssh_user=ubuntu'+
-  	' ansible_ssh_private_key_file='+process.env.HOME+'/Downloads/HW1.pem';
-  	//homedir = os.homedir();
-  	dir  = process.env.HOME+"/HW/HW1/inventory";
+	  	//homedir = os.homedir();
+	  		dir  = process.env.HOME+"/HW/HW1/inventory";
+	  	    fs.appendFile(dir,file_data, function (err) {
+	  		    if (err) return console.log(err);
+				dir  = process.env.HOME+"/HW/HW1/inventory";
 
-  	fs.writeFile(dir,file_data, function (err) {
-  if (err) return console.log(err);
+	 	});
+  		function puts(error, stdout, stderr) { x =stdout; console.log(x);console.log("end");}
+  		if (err) {console.log(err, err.stack);return;} // an error occurred
+  		//exec("ansible-playbook ~/HW/HW1/play.yaml -i ~/HW/HW1/inventory", puts);
+		});
 
-});
-  });
+	});
+ });
 
-var txtFile = "~/HW/HW1/test.txt";
-var str = "My string of text";
+
+
+
+
 
 
