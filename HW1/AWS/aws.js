@@ -1,23 +1,22 @@
 var AWS = require('aws-sdk');
 fs = require('fs');
-os = require('os');
+	os = require('os');
 var sys = require('sys')
 var exec = require('child_process').exec;
 
 
 // configure AWS security tokens
 AWS.config.update({accessKeyId: process.env.AccessKeyID,
-  secretAccessKey: process.env.SecretAccessKey});
+secretAccessKey: process.env.SecretAccessKey});
 
-// Set your region for future requests.
 AWS.config.update({region: 'us-west-1'});
 
 var ec2 = new AWS.EC2({apiVersion: '2015-04-15'});
 
 
 var params = {
-  ImageId: 'ami-d383af96', // Amazon Linux AMI x86_64 EBS
-  InstanceType: 'm1.small',
+  ImageId: 'ami-df6a8b9b', // Amazon Linux AMI x86_64 EBS
+  InstanceType: 't2.micro',
   KeyName: 'HW1',
   MinCount: 1, MaxCount: 1
 };
@@ -38,15 +37,14 @@ ec2.runInstances(params, function(err, data) {
   		console.log("Could not create instance", err); return;
   		}
   		console.log("here");
-  		//console.log(params.InstanceIds);
-	  	var ip = data.Reservations[0].Instances[0].PublicIpAddress;
+  		var ip = data.Reservations[0].Instances[0].PublicIpAddress;
 	  	console.log(ip);
-	  	var file_data = '[servers]\nnode-aws ansible_ssh_host='+ip+' ansible_ssh_user=ubuntu'+
-	  	' ansible_ssh_private_key_file='+process.env.HOME+'/Downloads/HW1.pem';
 
-	  	//homedir = os.homedir();
-	  		dir  = process.env.HOME+"/HW/HW1/inventory";
-	  	    fs.appendFile(dir,file_data, function (err) {
+	  	var file_data = '\nnode-aws ansible_ssh_host='+ip+' ansible_ssh_user=ubuntu'+
+	  	' ansible_ssh_private_key_file='+process.env.HOME+'/Downloads/HW1.pem';
+		dir  = process.env.HOME+"/HW/HW1/inventory";
+
+	  	fs.appendFile(dir,file_data, function (err) {
 	  		    if (err) return console.log(err);
 				dir  = process.env.HOME+"/HW/HW1/inventory";
 
