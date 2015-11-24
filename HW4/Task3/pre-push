@@ -1,0 +1,8 @@
+color=$1
+branch=$2
+
+cd /root/App
+docker build -t hw4-app .
+echo "build completed"
+docker tag -f  hw4-app localhost:5000/hw4:$color
+docker push localhost:5000/hw4:$color
