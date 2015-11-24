@@ -1,0 +1,10 @@
+GIT_WORK_TREE=$ROOT/blue-www/ git checkout -f  
+echo "Stoping blue-app"
+docker stop blue-app  
+echo "Removing blue-app"
+docker rm blue-app
+docker rmi localhost:5000/hw4:blue_current  
+docker pull localhost:5000/hw4:blue
+docker tag localhost:5000/hw4:blue localhost:5000/hw4:blue_current
+echo "New image running on port 50100"
+docker run -p 50100:8080 -d --name blue-app localhost:5000/hw4:blue_current
