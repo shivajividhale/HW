@@ -1,1 +1,0 @@
-/bin/sh: 0: Can't open socat
