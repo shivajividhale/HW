@@ -5,7 +5,7 @@
 Two folders [Container 1](https://github.com/shivajividhale/HW/tree/master/HW4/Task1/Container1) and [Container 2](https://github.com/shivajividhale/HW/tree/master/HW4/Task1/Container2) contain Dockerfiles that would be built. And the following run commands are executed:
 
 Server running socat:
-	`docker run -it -d --name server server-container  /bin/sh`
+	`docker run -it -d --name server server-container  /bin/sh` <br>
 Client container:
 	`docker run -it --link server:server client-container /bin/sh -c "curl http://server:9001"`
 
@@ -13,10 +13,12 @@ Client container:
 
 2) **Ambassador pattern**: 
 Two Docker Compose files are used: [Server-side](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/server-host/docker-compose.yml) and [Client-Side](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/client-host/Task2/docker-compose.yml)
-And following commands are used:
 
+Two dockerfiles are use to build the images apart from the Ambassador Docker file used in the Workshop.
+And following commands are used:
+Server-side [Dockerfile](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/client-host/Task2/Dockerfile) and Client-side [Dockerfile](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/server-host/Dockerfile)<br>
 Server side:
-	`docker-compose up -d`
+	`docker-compose up -d` <br>
 Client Side:
 	`docker-compose run --rm redis-client`
 
@@ -24,6 +26,8 @@ Client Side:
 
 3) **Docker Deploy**: 
 There are two repositories Blue Green as practiced before in this course.
+Same Docker file as that in App.git and same Deployment green blue slices as the ones used in HW. Here are the changes incorporated:
+
 Using a pre-push script:
 	#!/bin/sh
 
