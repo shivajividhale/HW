@@ -16,7 +16,7 @@ Two Docker Compose files are used: [Server-side](https://github.com/shivajividha
 
 Two dockerfiles are use to build the images apart from the Ambassador Docker file used in the Workshop.
 And following commands are used:
-Server-side [Dockerfile](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/client-host/Task2/Dockerfile) and Client-side [Dockerfile](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/server-host/Dockerfile)<br>
+Client-side [Dockerfile](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/client-host/Task2/Dockerfile) and Server-side [Dockerfile](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/server-host/Dockerfile)<br>
 Server side:
 	`docker-compose up -d` <br>
 Client Side:
