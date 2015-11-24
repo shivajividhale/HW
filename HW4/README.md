@@ -26,7 +26,7 @@ Client Side:
 
 3) **Docker Deploy**: 
 There are two repositories Blue Green as practiced before in this course.
-Same Docker file as that in App.git and same Deployment green blue slices as the ones used in HW. Here are the changes incorporated:
+Same Docker file as that in App.git and same Deployment green blue slices as the ones used in Deployment HW. Here are the changes incorporated:
 
 Using a pre-push script:
 	#!/bin/sh
@@ -55,3 +55,5 @@ And a post-receive script in the Deployement directory:
 
 Similar hook for green with the change in color in the file. <br>
 [Screencast](http://youtu.be/xQbFPzAgxFU?hd=1)
+
+PS: Documents have been rearranged to place it in the repository for submission. All neccessary links should be obtained from the README as the README has all the links to all parts of the submission.
