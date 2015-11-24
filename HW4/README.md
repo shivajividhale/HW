@@ -5,9 +5,9 @@
 Two folders [Container 1](https://github.com/shivajividhale/HW/tree/master/HW4/Task1/Container1) and [Container 2](https://github.com/shivajividhale/HW/tree/master/HW4/Task1/Container2) contain Dockerfiles that would be built. And the following run commands are executed:
 
 Server running socat:
-	docker run -it -d --name server server-container  /bin/sh
+	`docker run -it -d --name server server-container  /bin/sh`
 Client container:
-	docker run -it --link server:server client-container /bin/sh -c "curl http://server:9001"
+	`docker run -it --link server:server client-container /bin/sh -c "curl http://server:9001"`
 
 [Screencast](http://youtu.be/hXqEQs1u0OY?hd=1)
 
@@ -49,5 +49,5 @@ And a post-receive script in the Deployement directory:
 	echo "New image running on port 50100"
 	docker run -p 50100:8080 -d --name blue-app localhost:5000/hw4:blue_current
 
-Similar hook for green with the change in color in the file. 
-[Screencast](http://youtu.be/hXqEQs1u0OY?hd=1)
+Similar hook for green with the change in color in the file. <br>
+[Screencast](http://youtu.be/xQbFPzAgxFU?hd=1)
