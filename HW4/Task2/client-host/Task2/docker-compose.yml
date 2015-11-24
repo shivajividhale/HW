@@ -1,0 +1,11 @@
+client-ambassador:
+  build: /root/Task2/Ambassador
+  container_name: client-ambassador
+  environment:
+   - REDIS_PORT_6379_TCP=tcp://162.243.215.9:6379
+redis-client:
+  build: .
+  container_name: redis-client
+  links:
+   - client-ambassador
+  entrypoint: /usr/bin/redis-cli -h client-ambassador
