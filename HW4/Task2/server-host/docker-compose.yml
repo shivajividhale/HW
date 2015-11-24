@@ -1,0 +1,9 @@
+ambassador:
+  build: /root/Task2/Ambassador 
+  ports:
+   - "6379:6379"
+  links:
+   - redis
+redis:
+  build: .
+  container_name: redis
