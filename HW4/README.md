@@ -8,18 +8,20 @@ Server running socat:
 	docker run -it -d --name server server-container  /bin/sh
 Client container:
 	docker run -it --link server:server client-container /bin/sh -c "curl http://server:9001"
-[![Screencast]](http://youtu.be/hXqEQs1u0OY?hd=1)
+
+[Screencast](http://youtu.be/hXqEQs1u0OY?hd=1)
 
 2) **Ambassador pattern**: 
 Two Docker Compose files are used: [Server-side](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/server-host/docker-compose.yml) and [Client-Side](https://github.com/shivajividhale/HW/blob/master/HW4/Task2/client-host/Task2/docker-compose.yml)
 And following commands are used:
 
 Server side:
-	docker-compose up -d
+	`docker-compose up -d`
 Client Side:
-	docker-compose run --rm redis-client
+	`docker-compose run --rm redis-client`
 
-[![Screencast]](https://www.youtube.com/watch?v=bx92qWOMFZQ&feature=youtu.be&hd=1)
+[Screencast](https://www.youtube.com/watch?v=bx92qWOMFZQ&feature=youtu.be&hd=1)
+
 3) **Docker Deploy**: 
 There are two repositories Blue Green as practiced before in this course.
 Using a pre-push script:
@@ -35,6 +37,7 @@ Using a pre-push script:
 	docker push localhost:5000/hw4:$color
 
 And a post-receive script in the Deployement directory:
+
 	GIT_WORK_TREE=$ROOT/blue-www/ git checkout -f  
 	echo "Stoping blue-app"
 	docker stop blue-app  
@@ -47,4 +50,4 @@ And a post-receive script in the Deployement directory:
 	docker run -p 50100:8080 -d --name blue-app localhost:5000/hw4:blue_current
 
 Similar hook for green with the change in color in the file. 
-[![Task3]](http://youtu.be/hXqEQs1u0OY?hd=1)
+[Screencast](http://youtu.be/hXqEQs1u0OY?hd=1)
